@@ -3,10 +3,11 @@ kind: Pod
 metadata:
   name: nodehelloworld.example.windows.com
   labels:
-    app: helloworld-windows
+    app: helloworld-aws
 spec:
   containers:
   - name: nodejs-demo
     image: varunbhatbm/nodejs-docker-demo
     ports:
     - containerPort: 3000
+      name: nodejs-port
