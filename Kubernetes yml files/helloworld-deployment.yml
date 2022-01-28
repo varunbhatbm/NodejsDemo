@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      name: helloworld-deployment
+  template:
+    metadata:
+      labels:
+        app: helloworld-dep
+        name: helloworld-deployment
+    spec:
+      containers:
+      - name: nodejs-demo
+        image: varunbhatbm/nodejs-docker-demo
+        ports:
+        - containerPort: 3000 
