@@ -4,6 +4,7 @@ metadata:
   name: helloworld-deployment
 spec:
   replicas: 4
+  revisionHistoryLimit: 6
   selector:
     matchLabels:
       name: helloworld-deployment
