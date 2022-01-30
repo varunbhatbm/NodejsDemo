@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busybox-lifecycle
+  labels:
+    app: lifecycle-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: lifecycle-demo
+  template: 
+    metadata:
+      labels:
+        name: lifecycle-demo
+    spec:
+      initContainers:
+      - name: init
+        image:  busybox
+        command: ['sh','-c', 'sleep 10']
+      containers:
+      - name: lifecycle-container
+        image: busybox
+        command: ['sh','-c', 'echo $(date +%s): Running >> /timing && echo "The app is running!" && /bin/sleep 120']
+        readinessProbe:
+          exec:
+            command: ['sh','-c', 'echo $(date +%s): Readiness Probe >> /timing']
+          initialDelaySeconds: 35
+        livenessProbe:
+          exec:
+            command: ['sh','-c', 'echo $(date +%s): Liveness Proble >> /timing']
+          initialDelaySeconds: 30
+          timeoutSeconds: 15
+        lifecycle:
+          postStart:
+            exec:
+              command: ['sh','-c', 'echo $(date +%s): PostStart >> /timing && sleep 10 && echo $(date +%s): End PostStart >> /timing']
+          preStop:
+            exec:
+              command: ['sh','-c', 'echo $(date +%s): PreStop >> /timing && sleep 10 && echo $(date +%s): End PreStop >> /timing']
+
