@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: helloworld-app
-        image: varunbhatbm/nodejs-docker-demo:3
+        image: varunbhatbm/nodejs-docker-demo:4
         imagePullPolicy:  Always
         command: ["node","index-db.js"]
         ports:
@@ -29,12 +29,12 @@ spec:
           valueFrom:
             secretKeyRef:
               name: helloworld-secrets
-              key: dbUserName
+              key: username
         - name: MYSQL_PASSWORD
           valueFrom:
             secretKeyRef:
               name: helloworld-secrets
-              key:  rootPassword
+              key:  password
         - name: MYSQL_DATABASE
           valueFrom:
             secretKeyRef:

@@ -13,7 +13,7 @@ con.connect(function(err) {
     }
 
     console.log('Connection to DB established');
-    con.query('CREATE TABLE IF NOT EXISTS visits (id NOT NULL PRIMARY_KEY AUTO_INCREMENT,  ts BIGINT)',function(err){
+    con.query('CREATE TABLE IF NOT EXISTS visits (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,  ts BIGINT)',function(err){
         if(err)
             throw err;
     });
