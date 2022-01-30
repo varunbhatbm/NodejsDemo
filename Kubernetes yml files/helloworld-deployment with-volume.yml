@@ -19,8 +19,8 @@ spec:
         ports:
         - containerPort: 3000 
           name: nodejs-port
-        volumeMount:
-        - mounthPath: /myvol
+        volumeMounts:
+        - mountPath: /myvol
           name: myvolume
       volumes:
       - name: myvolume
