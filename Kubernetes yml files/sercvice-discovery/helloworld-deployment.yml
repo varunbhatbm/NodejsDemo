@@ -6,6 +6,7 @@ spec:
   replicas: 3
   selector:
     matchLabels:
+      app: helloworld-db
       name: helloworld-deployment
   template:
     metadata:
@@ -16,6 +17,7 @@ spec:
       containers:
       - name: helloworld-app
         image: varunbhatbm/nodejs-docker-demo:3
+        imagePullPolicy:  Always
         command: ["node","index-db.js"]
         ports:
         - name: nodejs-port 

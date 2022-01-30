@@ -3,6 +3,9 @@ var app= express();
 var mysql =  require("mysql");
 var con = mysql.createConnection({ host: process.env.MYSQL_HOST, user: process.env.MYSQL_USER, password: process.env.MYSQL_PASSWORD, database: process.env.MYSQL_DATABASE});
 
+console.log('Host [%s] user [%s] password [%s] databsae [%s]',process.env.MYSQL_HOST,process.env.MYSQL_USER,
+                            process.env.MYSQL_PASSWORD,process.env.MYSQL_DATABASE)
+
 con.connect(function(err) {
     if(err){
         console.log('Error connecting to DB: ',err);
